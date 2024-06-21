@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+  <title>DNS</title>
+</head>
+
+<body>
+<!-- PAGE: 
+
+
+
+  url
+
+  next
+
+  path
+
+  id
+
+  content
+
+  output
+
+  collection
+
+  relative_path
+
+  previous
+
+  excerpt
+
+  draft
+
+  categories
+
+  layout
+
+  title
+
+  tags
+
+  code
+
+  date
+
+  slug
+
+  ext
+ -->
+
+  <div class="row mb-4">
+
+    <h1>
+      <a href="/index.html">
+        ..
+      </a>
+
+      /DNS
+    </h1>
+  </div>
+  <h1>Code</h1>
+
+
+  <div class="row mb-4">
+    
+  </div>
+
+  
+
+  <!-- Content -->
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1">GET DNS Records</h4>
+      
+      
+
+      
+
+      <div class="window">
+        <div class="title-bar">
+          <div>
+            <!-- <span class="window_dot language-python"></span> -->
+            <span class="window_dot bg-danger"></span>
+            <span class="window_dot bg-warning"></span>
+            <span class="window_dot bg-success"></span>
+          </div>
+        </div>
+
+        <div class="content code-content">
+          dig [DOMAIN] @DNS_IP <br/> dig ANY [DOMAIN]<br/> dig [A|AAA|MX|TXT|...] [DOMAIN] <br/> <br/> dig hacktrics.xyz @8.8.8.8 <br/> dig CNAME hacktrics.xyz @8.8.8.8 <br/>
+        </div>
+      </div>
+      
+
+      
+      
+      <ul>
+        
+        <li>
+          <a class="small text-arrow-icon" href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-dns#ipv6" target="_blank">
+            https://book.hacktricks.xyz/network-services-pentesting/pentesting-dns#ipv6
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-arrow-right">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </li>
+        
+        <li>
+          <a class="small text-arrow-icon" href="https://mxtoolbox.com/SuperTool.aspx" target="_blank">
+            https://mxtoolbox.com/SuperTool.aspx
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-arrow-right">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      
+      
+
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1">DNS Records</h4>
+      
+      
+      <table class="table">
+        <thead>
+          <tr>
+            
+            <th>
+              Record
+            </th>
+            
+            <th>
+              Description
+            </th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            
+            <td>A</td>
+            
+            <td>Maps a domain name to an IPv4 address.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>AAAA</td>
+            
+            <td>Maps a domain name to an IPv6 address.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>CNAME</td>
+            
+            <td>Alias for another domain name. Redirects queries to a canonical domain name.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>MX</td>
+            
+            <td>Specifies mail servers for accepting email for the domain.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>TXT</td>
+            
+            <td>Provides human-readable text information and is used for various purposes such as domain verification and security policies.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>NS</td>
+            
+            <td>Specifies the authoritative name servers for the domain.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>PTR</td>
+            
+            <td>Maps an IP address to a domain name (the opposite of an A record). Used for reverse DNS lookups.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>SOA</td>
+            
+            <td>Provides administrative information about the zone, including the primary name server, the email of the domain administrator, the domain serial number, and other control parameters.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>SRV</td>
+            
+            <td>Defines the location of specific services such as SIP, XMPP, etc.</td>
+            
+          </tr>
+          
+          <tr>
+            
+            <td>CAA</td>
+            
+            <td>Specifies which certificate authorities (CAs) are allowed to issue certificates for the domain.</td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+      
+
+      
+      
+    </div>
+  </div>
+  
+  
+  <hr />
+  <div class="row">
+    
+
+    <div class="col-1">
+      <div class="badge bg-primary">
+        DNS
+      </div>
+
+    </div>
+    
+
+    <div class="col-1">
+      <div class="badge bg-primary">
+        dig
+      </div>
+
+    </div>
+    
+
+
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-html.min.js"></script>
+  <script src="/assets/js/code.js"></script>
+</body>
+
+</html>

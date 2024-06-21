@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+  <title>JQ</title>
+</head>
+
+<body>
+<!-- PAGE: 
+
+
+
+  url
+
+  next
+
+  path
+
+  id
+
+  content
+
+  output
+
+  collection
+
+  relative_path
+
+  previous
+
+  excerpt
+
+  draft
+
+  categories
+
+  layout
+
+  title
+
+  tags
+
+  os
+
+  code
+
+  date
+
+  slug
+
+  ext
+ -->
+
+  <div class="row mb-4">
+
+    <h1>
+      <a href="/index.html">
+        ..
+      </a>
+
+      /JQ
+    </h1>
+  </div>
+  <h1>Code</h1>
+
+
+  <div class="row mb-4">
+    
+  </div>
+
+  
+
+  <!-- Content -->
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1">data.json</h4>
+      
+      
+
+      
+
+      <div class="window">
+        <div class="title-bar">
+          <div>
+            <!-- <span class="window_dot language-python"></span> -->
+            <span class="window_dot bg-danger"></span>
+            <span class="window_dot bg-warning"></span>
+            <span class="window_dot bg-success"></span>
+          </div>
+        </div>
+
+        <div class="content code-content">
+          {"data"=>[{"url"=>"www.evil.com", "name"=>"evil", "success"=>true}, {"url"=>"www.hacking.com", "name"=>"Hack", "success"=>false}]}
+        </div>
+      </div>
+      
+
+      
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1">Arguments</h4>
+      
+      
+
+      
+
+      <div class="window">
+        <div class="title-bar">
+          <div>
+            <!-- <span class="window_dot language-python"></span> -->
+            <span class="window_dot bg-danger"></span>
+            <span class="window_dot bg-warning"></span>
+            <span class="window_dot bg-success"></span>
+          </div>
+        </div>
+
+        <div class="content code-content">
+          -r Remove double quotes
+        </div>
+      </div>
+      
+
+      
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1"></h4>
+      
+      
+
+      
+
+      <div class="window">
+        <div class="title-bar">
+          <div>
+            <!-- <span class="window_dot language-python"></span> -->
+            <span class="window_dot bg-danger"></span>
+            <span class="window_dot bg-warning"></span>
+            <span class="window_dot bg-success"></span>
+          </div>
+        </div>
+
+        <div class="content code-content">
+          jq . <br/> jq '.[].[key]' //Filter when exists array like root element jq '.[key][]' // Get only content from principal array jq '.[key][].[subkey]'<br/> jq '.[key][].[subkey] | .[key]'  // Get the values from specified key onlyespecifico<br/> jq '.[key][].[subkey] | select ( .filterkey == value ) | .key // Filter using select clause and retrieve specified key<br/> jq '.[key][].[subkey] | select ( .filterkey == value ) | .key + " " + .key2 // Filter and concat the results<br/> jq '.[key][].[subkey] | select ( .filterkey == value ) | select (.filterkey2 == value2 // Multiple filters<br/> jq '. | (.integerkey|tostring)'  // Parse int to string<br/> jq '.[] | .[field1] + "[field separator"] + .[field2] // jq '.[] | .name+":"+.description'<br/> jq '.[] | .[field1]' &ndash;r // Delete/Remove double quotes<br/>
+        </div>
+      </div>
+      
+
+      
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1">Get root sections</h4>
+      
+      
+
+      
+
+      <div class="window">
+        <div class="title-bar">
+          <div>
+            <!-- <span class="window_dot language-python"></span> -->
+            <span class="window_dot bg-danger"></span>
+            <span class="window_dot bg-warning"></span>
+            <span class="window_dot bg-success"></span>
+          </div>
+        </div>
+
+        <div class="content code-content">
+          jq '. | keys'
+        </div>
+      </div>
+      
+
+      
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1">Get specified section.</h4>
+      
+      
+
+      
+
+      <div class="window">
+        <div class="title-bar">
+          <div>
+            <!-- <span class="window_dot language-python"></span> -->
+            <span class="window_dot bg-danger"></span>
+            <span class="window_dot bg-warning"></span>
+            <span class="window_dot bg-success"></span>
+          </div>
+        </div>
+
+        <div class="content code-content">
+          jq '.[key]'<br> cat sample.json | jq '.data.[].url'
+        </div>
+      </div>
+      
+
+      
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1">Concat values</h4>
+      
+      
+
+      
+
+      <div class="window">
+        <div class="title-bar">
+          <div>
+            <!-- <span class="window_dot language-python"></span> -->
+            <span class="window_dot bg-danger"></span>
+            <span class="window_dot bg-warning"></span>
+            <span class="window_dot bg-success"></span>
+          </div>
+        </div>
+
+        <div class="content code-content">
+          jq '.key.array.field [separator] .field' <br/> cat sample.json |jq '.data.[].url+.name'
+        </div>
+      </div>
+      
+
+      
+      
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12 mb-0">
+      <h4 class="subtitle mb-1">Get specified section.</h4>
+      
+      
+
+      
+
+      <div class="window">
+        <div class="title-bar">
+          <div>
+            <!-- <span class="window_dot language-python"></span> -->
+            <span class="window_dot bg-danger"></span>
+            <span class="window_dot bg-warning"></span>
+            <span class="window_dot bg-success"></span>
+          </div>
+        </div>
+
+        <div class="content code-content">
+          jq '.[key]'<br> cat sample.json | jq '.data.[].url'
+        </div>
+      </div>
+      
+
+      
+      
+    </div>
+  </div>
+  
+  
+  <hr />
+  <div class="row">
+    
+
+    <div class="col-1">
+      <div class="badge bg-primary">
+        jq
+      </div>
+
+    </div>
+    
+
+    <div class="col-1">
+      <div class="badge bg-primary">
+        Linux
+      </div>
+
+    </div>
+    
+
+    <div class="col-1">
+      <div class="badge bg-primary">
+        json
+      </div>
+
+    </div>
+    
+
+
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-html.min.js"></script>
+  <script src="/assets/js/code.js"></script>
+</body>
+
+</html>

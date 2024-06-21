@@ -1,0 +1,52 @@
+---
+layout: base
+---
+
+{%if page.version%}
+<div class="row mb-2">
+
+  <div class="badge rounded-pill bg-light text-dark" style="text-align: left;">
+    Version: {{page.version}}
+  </div>
+
+</div>
+{%endif%}
+
+{%if page.ports %}
+<h3>Default Ports</h3>
+<div class="row mb-0">
+  <ul class="list-group list-group-flush list-group-careers">
+    {% for p in page.ports %}
+    <li class="list-group-item">
+      {{p}}
+    </li>
+    {%endfor%}
+
+  </ul>
+</div>
+{%endif%}
+
+<div class="row mb-2">
+  <div class="col-12">
+    {{content}}
+  </div>
+</div>
+
+{%if page.tags%}
+<hr/>
+<div class="row bd-example">
+  {% for t in page.tags %}
+
+  <div class="col">
+    <span class="badge bg-primary">
+      {{t}}
+    </span>
+  </div>
+    
+
+  
+  {% endfor %}
+
+
+</div>
+{%endif%}

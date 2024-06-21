@@ -1,0 +1,11 @@
+version: '3'
+services:
+  wiki:
+    build: .
+    image: nginx
+    container_name: wiki
+    restart: always
+    ports:
+      - 8081:80
+    volumes:
+      - $PWD/_site:/usr/share/nginx/html
