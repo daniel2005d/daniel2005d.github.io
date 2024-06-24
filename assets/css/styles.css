@@ -27,9 +27,9 @@ h2{
 }
 
 a{
-    text-decoration: none !important;
+    text-decoration: dotted !important;
   transition: 0.5s;
-  color: #393f44;
+  color: #809fff;
   font-weight: 600;
 }
 .window_dot{
