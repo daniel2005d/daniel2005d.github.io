@@ -16,12 +16,16 @@ Start-Process notepad.exe
 Stop-Process -name notepad.exe
 Stop-Process -id 3245
 ```
+
 ```powershell
 Get-Process -Name notepad
 ```
 
-Get-HotFix: Get Hotfix installed on local machine
+Get Hotfix installed on local machine
 
+```powershell
+Get-HotFix
+```
 
 ## Display Format 
 
@@ -37,7 +41,7 @@ Format-Wide
 ```
 
 
-*Example*
+### -------------------------- Example ----------------------------
 ```powershell
 	Get-Process | Format-List
 	Get-ChildItem | Format-Table [Columns]
@@ -57,10 +61,11 @@ Out-Printer:
 Out-String: Display in terminal
 ```
 
-*Example*
+### -------------------------- Example ----------------------------
+
 ```powershell
-	Get-Hotfix | Out-GridView
-	Get-Hotfix | Out-File -FilePath ""
+Get-Hotfix | Out-GridView
+Get-Hotfix | Out-File -FilePath ""
 ```
 
 # Multiline definition

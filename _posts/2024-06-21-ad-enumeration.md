@@ -2,21 +2,9 @@
 layout: app
 title: "Active Directory"
 tags: ["enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU"]
+
 ---
-# Enumeration
 
-- [AdModule](https://github.com/samratashok/ADModule)
-
-```powershell
-Import-Module Microsoft.ActiveDirectory.Management.dll -Verbose
-Get-ADDomain
-```
-
-- [BloodHound](https://github.com/BloodHoundAD/BloodHound)
-
-- [PowerView](https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1)
-
-- [SharpView](https://github.com/tevora-threat/SharpView/)
 
 # Double-Hob
 
@@ -40,14 +28,26 @@ UserPrincipalName    :
 
 ```
 
-- [read more](https://adsecurity.org/?p=1667)
+[https://adsecurity.org/?p=1667](https://adsecurity.org/?p=1667)
 
+[https://github.com/BloodHoundAD/BloodHound](https://github.com/BloodHoundAD/BloodHound)
+
+[https://github.com/tevora-threat/SharpView/](https://github.com/tevora-threat/SharpView/)
 
 # PowerView
 
+[https://powersploit.readthedocs.io/en/latest/Recon](https://powersploit.readthedocs.io/en/latest/Recon/)
+[https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1](https://github.com/ZeroDayLab/PowerSploit/blob/master/Recon/PowerView.ps1)
+## Enumeration
+
+### [AdModule](https://github.com/samratashok/ADModule)
+
 ```powershell
-Get-Domain
+Import-Module Microsoft.ActiveDirectory.Management.dll -Verbose
+Get-ADDomain
 ```
+
+
 
 ### Get Password Policy
 
@@ -73,7 +73,7 @@ Get-DomainUser -Identity [username] -Properties *
 Get-DomainUser -LdapFilter "Description=*built*" | Select name,Description
 ```
 
-#### Get Group Names of the user
+### Get Group Names of the user
 ```powershell
 Get-DomainGroup -UserName Administrator
 ```
@@ -122,19 +122,19 @@ Get-DomainGPO
 Get-DomainGPO -ComputerIdentity PC001
 ```
 
-#### Get GPO(s) which use Restricted Groups or groups.xml for interesting users
+### Get GPO(s) which use Restricted Groups or groups.xml for interesting users
 
 ```powershell
 Get-DomainGPOLocalGroup
 ```
 
-#### Get users which are in a local group of a machine using GPO
+### Get users which are in a local group of a machine using GPO
 
 ```powershell
 Get-DomainGPOComputerLocalGroupMapping –ComputerIdentity PC01
 ```
 
-#### Get machines where the given user is member of a specific group
+### Get machines where the given user is member of a specific group
 
 ```powershell
 Get-DomainGPOUserLocalGroupMapping -Identity student1 -Verbose
@@ -146,3 +146,31 @@ Get-DomainGPOUserLocalGroupMapping -Identity student1 -Verbose
 (Get-DomainOU -Identity MachineOU).distinguishedname | %{Get-DomainComputer -SearchBase $_} | select Name
 ```
 
+### ACL
+
+```powershell
+Get-DomainObjectAcl -SamAccountName "username" -ResolveGUIDS
+Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins, CN=Users,DC=crtp,DC=lab" -ResolveGUIDS
+```
+```powershell
+ Find-InterestingDomainAcl -ResolveGUIDs
+ Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "username"}
+```
+
+# Privilege Escalation
+
+Find all machines on the current domain where the current user has local admin acccess
+
+```powershell
+ Find-LocalAdminAccess
+```
+
+```powershell
+ Invoke-CheckLocalAdminAccess
+```
+
+Get all domain computers
+
+```powershell
+ Get-NetComputer
+```
