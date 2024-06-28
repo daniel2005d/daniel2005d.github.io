@@ -15,14 +15,14 @@
   
 
   <div id="sidebar">
-    <h2>Menu</h2>
+    
     <ul id="menu">
 
 
     </ul>
   </div>
   <div id="content">
-    <h1>
+    <h1 id="title">
       {{page.title}}
     </h1>
     <div role="navigation" >
@@ -41,19 +41,55 @@
 
 
   <script>
-    const paragraphs = document.querySelectorAll("h1");
-    let menu = document.getElementById("menu");
-    paragraphs.forEach(item => {
-      // const nextH2 = menu.nextElementSibling;
-      // if (nextH2 && nextH2.tagName.toLowerCase() === 'h2') {
-      //           console.log(nextH2.textContent);
-      //           // If you want to do something with the h2 elements, you can manipulate them here
-      //       }
+            function createMenu() {
+            const headings = document.querySelectorAll('h1, h2,h3');
+            const menu = document.getElementById('menu');
+            let currentH1 = null;
+            let currentH2 = null;
+            headings.forEach(heading => {
+              if (heading.id === 'title'){
+                return;
+              }
+              const tagName = heading.tagName.toLowerCase();
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.textContent = heading.textContent;
+                a.href = `#${heading.id}`;
+                li.appendChild(a);
 
-      const newItem = document.createElement('li');
-      newItem.innerHTML = `<a href=#>${item.innerText}</a>`;
-      menu.appendChild(newItem);
-    });
+                if (tagName === 'h1') {
+                    currentH1 = document.createElement('ul');
+                    
+                    currentH2 = null;
+                    li.appendChild(currentH1);
+                    menu.appendChild(li);
+                } else if (tagName === 'h2') {
+                    currentH2 = document.createElement('ul');
+                    currentH2.classList.add('subnav');
+                    li.appendChild(currentH2);
+                    if (currentH1) {
+                        currentH1.appendChild(li);
+                    }
+                } else if (tagName === 'h3' && currentH2) {
+                  li.classList.add('sub-level');
+                    currentH2.appendChild(li);
+                }
+            });
+        }
+
+         // Add IDs to headings for navigation
+         function addIdsToHeadings() {
+            const headings = document.querySelectorAll('h1, h2,h3');
+            headings.forEach((heading, index) => {
+              if (heading.id !== 'title'){
+                heading.id = `heading-${index}`;
+              }
+
+            });
+        }
+
+        addIdsToHeadings();
+        createMenu();
 
 
   </script>

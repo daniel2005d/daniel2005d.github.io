@@ -1,6 +1,7 @@
 body {
-    font-family: Ubuntu;
+    font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
     margin: 0;
+    font-size: 90%;
     display: flex;
 }
 
@@ -11,8 +12,12 @@ body {
     max-width: 1150px;
 }
 
+#content ul{
+    margin-bottom: 10px;
+}
+
 #sidebar {
-    font-size: 90%;
+    
     width: 15%;
     background-color: #343131;
     padding: 15px;
@@ -29,6 +34,19 @@ body {
     font-size: 90%;
 
 }
+ul.subnav{
+    padding-left: 1em;
+}
+
+.sub-level a{
+    color: #c0f2d1!important;
+}
+
+#menu li{
+    padding: 0.2em;
+}
+
+
 
 a {
     color: #3091d1;

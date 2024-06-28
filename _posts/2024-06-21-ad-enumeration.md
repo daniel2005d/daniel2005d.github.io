@@ -5,6 +5,10 @@ tags: ["enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU
 
 ---
 
+# Create Lab
+
+[https://jesspomfret.com/automatedlab-sql-server/](https://jesspomfret.com/automatedlab-sql-server/)
+
 
 # Double-Hob
 
@@ -83,7 +87,7 @@ Get-DomainGroup -UserName Administrator
 Get-DomainComputer
 ```
 
-### Groups
+### Get Groups
 
 ```powershell
 Get-DomainGroup 
@@ -94,7 +98,10 @@ Get-DomainGroup *admin*
 
 ```powershell
 Get-DomainGroupMember -Identity "Domain Admins" -Recurse
+Get-NetGroupMember Group | Select MemberName
 ```
+
+
 
 ### Find Information
 
@@ -159,18 +166,66 @@ Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins, CN=Users,DC=crtp,DC=la
 
 # Privilege Escalation
 
-Find all machines on the current domain where the current user has local admin acccess
+## CheckList
+
+- Missing Patches
+- Automated deployment
+- Autologon passwords
+- AlwaysInstallElevated
+- MisConfiguration Services
+- DLL Hijacking
+- NTLM Relaying
+
+
+### Tools
+* [PowerUp](https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc)
+* - Invoke-AllChecks
+* [Privesc](https://github.com/enjoiz/Privesc)
+* [RemotePotato0](https://github.com/antonioCoco/RemotePotato0)
+
+## PowerSploit
+
+### Get Services with Unquoted Path
 
 ```powershell
- Find-LocalAdminAccess
+Get-ServiceUnquoted -Verbose
+Get-WmiObject -Class win32_service | select pathname
+```
+### Determine if the current user has rights to modify the service binary itself or any associated arguments
+
+```powershell
+Get-ModifiableServiceFile
 ```
 
+### Get Service Security Permission
 ```powershell
- Invoke-CheckLocalAdminAccess
+sc.exe sdshow "servicename"
 ```
 
-Get all domain computers
+
+
+## Enumeration
+
+### Find computers where a current user can execute commands
 
 ```powershell
- Get-NetComputer
+Find-LocalAdminAccess
+Find-WMILocalAdminAccess.ps1
+Find-PSRemotingLocalAdminAccess.ps1 
+Invoke-CheckLocalAdminAccess
+```
+
+
+### Get all domain computers
+
+```powershell
+Get-NetComputer
+```
+
+### Finds domain machines where specific users are logged into
+
+```powershell
+Test-AdminAccess
+Find-DomainUserLocation -CheckAccess
+Find-DomainUserLocation -Stealth
 ```
