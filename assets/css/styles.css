@@ -27,6 +27,7 @@ body {
     overflow-y: auto;
 }
 
+
 #sidebar a {
     color: #b3b3b3;
     line-height: 18px;
@@ -34,6 +35,7 @@ body {
     font-size: 90%;
 
 }
+
 ul.subnav{
     padding-left: 1em;
 }
@@ -42,26 +44,68 @@ ul.subnav{
     color: #c0f2d1!important;
 }
 
-#menu li{
-    padding: 0.2em;
-}
 
-
-
-a {
-    color: #3091d1;
-    font-weight: normal;
-}
+#menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #menu li {
+    position: relative;
+  }
+  
+  #menu li a {
+    color: #666;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  #menu li a:hover {
+    color: #333;
+  }
+  
+  #menu ul {
+    /* position: absolute; */
+    left: 0;
+    top: 0;
+    /* background-color: #f9f9f9;
+    border: 1px solid #ccc; */
+    padding: 2px;
+  }
+  
+  #menu ul ul {
+    left: calc(100% - 100%);
+    top: -30px;
+  }
+  
+  #menu ul ul ul {
+    left: calc(100% - 200%);
+    top: -60px;
+  }
+  
+  #menu ul ul li {
+    display: block;
+  }
+  
+  #menu ul ul li a {
+    padding-left: 20px;
+  }
+  
+  #menu ul ul ul li {
+    display: block;
+  }
+  
+  #menu ul ul ul li a {
+    padding-left: 30px;
+  }
 
 a:visited {
     color: #3091d1 !important;
     text-decoration: underline;
 }
 
-#menu a:hover {
-    background-color: #4e4a4a;
-    cursor: pointer;
-}
+
 
 h1 h2 {
     font-size: 175%;
@@ -75,8 +119,8 @@ h2 {
 }
 
 h3 {
-
-    color: #2980b9;
+    font-size: 125%;
+    /* color: #2980b9; */
     font-weight: 300;
 }
 

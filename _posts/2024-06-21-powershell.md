@@ -1,16 +1,36 @@
 ---
 layout: app
 title: "Powershell"
-tags: ["powershell"]
+tags: ["powershell","winrs","invoke-command","winrm"]
 ---
 
 
 # PowerShell
 
+## Run Commands over Remote Machine
+
+```powershell
+Invoke-Command -Scriptblock {Get-Process} -ComputerName (Get-Content <list_servers>)
+Invoke-Command -FilePath c:\windows\temp\script.ps1 -ComputerName (Get-Content <list_servers>)
+```
+
+## Run Command to evade logging
+
+```powershell
+winrs -remote:<server> -u:<server>\<administrator> -p:<password> <COMMAND>
+```
+
+Execute remote commands over WinRM
+
+[WSMan-WinRM](https://github.com/bohops/WSMan-WinRM)
+
+
 ## Commands
 
+```powershell
 Start-Process, Stop-Process: Start/Stop Process on localmachine
 Get-Help Start-Process -examples | more
+```
 
 ```powershell
 Start-Process notepad.exe
@@ -42,7 +62,7 @@ Format-Wide
 ```
 
 
-### -------------------------- Example ----------------------------
+#### -------------------------- Example ----------------------------
 ```powershell
 	Get-Process | Format-List
 	Get-ChildItem | Format-Table [Columns]
@@ -62,7 +82,7 @@ Out-Printer:
 Out-String: Display in terminal
 ```
 
-### -------------------------- Example ----------------------------
+#### -------------------------- Example ----------------------------
 
 ```powershell
 Get-Hotfix | Out-GridView

@@ -9,6 +9,32 @@ tags: ["enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU
 
 [https://jesspomfret.com/automatedlab-sql-server/](https://jesspomfret.com/automatedlab-sql-server/)
 
+## Enable PSRemoting
+```powershell
+Enable-PSRemoting 
+```
+
+## Client
+
+### Join To Domain
+
+```powershell
+Add-Computer -DomainName lab.com -Credential lab\Administrator -Force -Restart
+```
+
+### Connect to Remote Desktop
+```powershell
+New-PSSession -ComputerName
+Start-Service WinRm
+Get-Item wsman:\localhost\
+Set-Item wsman:\localhost\Client\TrustedHosts -value  192.168.85.130
+New-PSSession -ComputerName <IP Address>  -Credential (Get-Credential)
+Enter-PSSession <Session Id>
+
+$dc = New-PSSession -ComputerName <IP Address>  -Credential (Get-Credential)
+Enter-PSSession $dc
+```
+
 
 # Double-Hob
 
@@ -162,70 +188,4 @@ Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins, CN=Users,DC=crtp,DC=la
 ```powershell
  Find-InterestingDomainAcl -ResolveGUIDs
  Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "username"}
-```
-
-# Privilege Escalation
-
-## CheckList
-
-- Missing Patches
-- Automated deployment
-- Autologon passwords
-- AlwaysInstallElevated
-- MisConfiguration Services
-- DLL Hijacking
-- NTLM Relaying
-
-
-### Tools
-* [PowerUp](https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc)
-* - Invoke-AllChecks
-* [Privesc](https://github.com/enjoiz/Privesc)
-* [RemotePotato0](https://github.com/antonioCoco/RemotePotato0)
-
-## PowerSploit
-
-### Get Services with Unquoted Path
-
-```powershell
-Get-ServiceUnquoted -Verbose
-Get-WmiObject -Class win32_service | select pathname
-```
-### Determine if the current user has rights to modify the service binary itself or any associated arguments
-
-```powershell
-Get-ModifiableServiceFile
-```
-
-### Get Service Security Permission
-```powershell
-sc.exe sdshow "servicename"
-```
-
-
-
-## Enumeration
-
-### Find computers where a current user can execute commands
-
-```powershell
-Find-LocalAdminAccess
-Find-WMILocalAdminAccess.ps1
-Find-PSRemotingLocalAdminAccess.ps1 
-Invoke-CheckLocalAdminAccess
-```
-
-
-### Get all domain computers
-
-```powershell
-Get-NetComputer
-```
-
-### Finds domain machines where specific users are logged into
-
-```powershell
-Test-AdminAccess
-Find-DomainUserLocation -CheckAccess
-Find-DomainUserLocation -Stealth
 ```
