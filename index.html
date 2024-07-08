@@ -42,7 +42,8 @@ description: Description
           </tr>
         </thead>
         <tbody>
-          {% for post in site.posts %}
+          {% assign sorted_posts = site.posts | sort: 'title' %}
+          {% for post in sorted_posts %}
           <tr data-title="{{post.title}}" data-os="{{post.os}}" data-tags="{{post.tags}}">
             <td>
               <a href="{{post.url}}">

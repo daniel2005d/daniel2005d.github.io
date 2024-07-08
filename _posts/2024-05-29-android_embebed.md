@@ -10,13 +10,15 @@ Hybrid mobile applications are apps that are built using web technologies such a
 
 ## Reversing Cordova Application
 
-1. [Install Cordova Pre-requisites](https://cordova.apache.org/docs/en/11.x/guide/cli/#install-pre-requisites-for-building)
-2. Install NodeJS
+* [Install Cordova Pre-requisites](https://cordova.apache.org/docs/en/11.x/guide/cli/#install-pre-requisites-for-building)
 
-Unzip **apk** application file into *```application/assets/www```* folder can view the source code of application. 
-All HTML and JavaScript code used to run application.
+* Install NodeJS
 
-The config file ```application/res/xml/coinfig.xml``` has all configuration for application.
+* Unzip **apk** application file
+* Inside `[application folder]/assets/www` folder can view the source code of application.
+
+
+**The config file `[application folder]/res/xml/coinfig.xml` has all configuration for application.**
 
 
 3. **Create a new Cordova application**
