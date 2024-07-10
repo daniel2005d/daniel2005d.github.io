@@ -4,6 +4,10 @@ title: "List Generators"
 tags: ["usernames","passwords","credentials","swaks","listst", "generator","crunch"]
 ---
 
+# RSMangler
+
+[https://github.com/digininja/RSMangler](https://github.com/digininja/RSMangler)
+
 # Username Anarchy
 [https://github.com/urbanadventurer/username-anarchy](https://github.com/urbanadventurer/username-anarchy)
 
