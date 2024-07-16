@@ -1,7 +1,7 @@
 ---
 layout: app
 title: "Active Directory"
-tags: ["enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU"]
+tags: ["enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU", "finduserdomain"]
 
 ---
 
@@ -10,6 +10,7 @@ tags: ["enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU
 [https://jesspomfret.com/automatedlab-sql-server/](https://jesspomfret.com/automatedlab-sql-server/)
 
 ## Enable PSRemoting
+
 ```powershell
 Enable-PSRemoting 
 ```
@@ -23,12 +24,13 @@ Add-Computer -DomainName lab.com -Credential lab\Administrator -Force -Restart
 ```
 
 ### Connect to Remote Desktop
+
 ```powershell
 New-PSSession -ComputerName
 Start-Service WinRm
 Get-Item wsman:\localhost\
 Set-Item wsman:\localhost\Client\TrustedHosts -value  192.168.85.130
-New-PSSession -ComputerName <IP Address>  -Credential (Get-Credential)
+New-PSSession -ComputerName "IP Address"  -Credential (Get-Credential)
 Enter-PSSession <Session Id>
 
 $dc = New-PSSession -ComputerName <IP Address>  -Credential (Get-Credential)
@@ -128,8 +130,16 @@ Get-NetGroupMember Group | Select MemberName
 ```
 
 
+# Find Information
 
-### Find Information
+## Find domain Admin
+
+Finds domain machines where specific users are logged into.
+
+
+```powershell
+(Powerview.ps1) Find-DomainUserLocation
+```
 
 #### Find shares on hosts in current domain
 
@@ -189,3 +199,5 @@ Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins, CN=Users,DC=crtp,DC=la
  Find-InterestingDomainAcl -ResolveGUIDs
  Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "username"}
 ```
+
+
