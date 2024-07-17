@@ -104,37 +104,3 @@ string"@
 $array = 1,2,4
 ```
 
-
-# Script Execution
-
-```powershell
-
-```
-
-## ByPass 
-
-- [Invisi-Shell](https://github.com/OmerYa/Invisi-Shell)
-> Invisi-Shell bypasses all of Powershell security features (ScriptBlock logging, Module logging, Transcription, AMSI) by hooking .Net assemblies.
-
-- [AMSITrigger](https://github.com/RythmStick/AMSITrigger)
-> To Scan custom script to avoid signature
-
-- [Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation)
-> To Obfuscate the AMSI bypass
-
-
-```powershell
-powershell -ExecutionPolicy Bypass
-powershell -c cmd
-powershell -encodedcommand
-$env:PSExecutionPolicyPreference="bypass"
-```
-
-### Obfuscate Runtime Instructions
-
-```powershell
-$String="niamoDppA.metsyS"
-$classrev = ([regex::Matches($String,'.','RightToLeft')]) | ForEach {$_.value} - join ''
-$AppDomain = [Reflection.Assembly].Assembly.GetType("$classrev").GetProperty('CurrentDomain').GetValue($null, @())
-
-```
