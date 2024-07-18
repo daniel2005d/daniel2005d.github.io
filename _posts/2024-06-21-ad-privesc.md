@@ -1,6 +1,6 @@
 ---
 layout: app
-title: "Active Directory - PirvEsc"
+title: "Active Directory - PrivEsc"
 tags: ["privesc","powerup","powerview","abuse service", "sc.exe", "Rubeus","permissions", "netloader","winrs","SafetyKats"]
 
 ---
