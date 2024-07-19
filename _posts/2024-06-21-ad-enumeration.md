@@ -1,7 +1,7 @@
 ---
 layout: app
 title: "Active Directory"
-tags: ["enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU", "finduserdomain"]
+tags: ["PASSWD_NOTREQD","enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU", "finduserdomain"]
 
 ---
 
@@ -35,6 +35,19 @@ Enter-PSSession <Session Id>
 
 $dc = New-PSSession -ComputerName <IP Address>  -Credential (Get-Credential)
 Enter-PSSession $dc
+```
+
+# Passwords in Description Field 
+
+```
+(PowerView)> Get-DomainUser * | Select-Object samaccountname,description | Where-Object {$_.Description -ne $null}
+```
+
+# PASSWD_NOTREQD
+[https://blog.icewolf.ch/archive/2011/06/08/how-to-read-the-value-of-ad-attribute-useraccountcontrol/](https://blog.icewolf.ch/archive/2011/06/08/how-to-read-the-value-of-ad-attribute-useraccountcontrol/)
+
+```
+(PowerView)> Get-DomainUser -UACFilter PASSWD_NOTREQD | select samaccountname,useraccountcontrol
 ```
 
 
@@ -200,4 +213,10 @@ Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins, CN=Users,DC=crtp,DC=la
  Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "username"}
 ```
 
+
+# AllowReversiblePasswordEncryption 
+
+```powershell
+Get-ADUser -Filter {AllowReversiblePasswordEncryption -eq "true"} | Select Name, sAMAccountName
+```
 
