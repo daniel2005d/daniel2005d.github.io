@@ -14,6 +14,19 @@ tags: ["adb","android","apktool","reverse","frida","bypass"]
 
 [SSL Pinning in Android](https://medium.com/@anandgaur22/ssl-pinning-in-android-14851dc41703)
 
+# Disassemble a .dex
+
+[https://github.com/JesusFreke/smali/wiki](https://github.com/JesusFreke/smali/wiki)
+```bash
+java -jar baksmali-2.1.1.jar classes.dex
+```
+
+# Assemble .smali
+
+```java
+java -jar smali-2.1.1.jar </source>
+```
+
 # Install FRIDA
 
 [https://frida.re/docs/android/](https://frida.re/docs/android/)
