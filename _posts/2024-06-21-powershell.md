@@ -104,3 +104,27 @@ string"@
 $array = 1,2,4
 ```
 
+
+# Antivirus
+
+## Get Defender Properties
+
+```powershell
+Get-MpComputerStatus
+```
+
+## Get Defender Status
+```powershell
+Get-MpComputerStatus | select AntivirusEnabled
+```
+
+## Add folder exclusion
+```powershell
+set-mppreference -ExclusionPath "c:\users\"
+```
+
+## Disable Defender
+```powershell
+Set-MpPreference -DisableRealtimeMonitoring $true
+Remove-MpThreat
+```
