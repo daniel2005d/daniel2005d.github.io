@@ -36,6 +36,14 @@ body {
 
 }
 
+.wrapper {
+    max-width: -webkit-calc(1000px -(30px* 2))!important;
+    max-width: calc(1000px -(30px* 2)) !important;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 30px;
+    padding-left: 30px;
+
 ul.subnav{
     padding-left: 1em;
 }

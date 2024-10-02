@@ -1,0 +1,9 @@
+---
+layout: none
+---
+posts:
+{%for post in site.posts limit:5 %}
+  - title: {{post.title}}
+  - url: "{{ post.url | relative_url }}"
+
+{%endfor%}
