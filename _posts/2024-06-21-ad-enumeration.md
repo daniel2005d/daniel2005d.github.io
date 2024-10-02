@@ -43,9 +43,9 @@ Enter-PSSession $dc
 (PowerView)> Get-DomainUser * | Select-Object samaccountname,description | Where-Object {$_.Description -ne $null}
 ```
 
- # ASREPRoasting
+# ASREPRoasting
 
-**DONT_REQ_PREAUTH** attribute user account
+**DONT_REQ_PREAUTH** attribute is set on user account
 
 ## Get users with DONT_REQ_PREAUTH attribute
 
