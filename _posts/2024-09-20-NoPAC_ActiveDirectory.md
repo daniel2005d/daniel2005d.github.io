@@ -1,8 +1,7 @@
 ---
 layout: app
 title: "Active Directory"
-tags: ["NoPac","DCSync]
-
+tags: ["NoPac","DCSync"]
 ---
 
 # NoPac
