@@ -1,7 +1,7 @@
 ---
 layout: app
 title: "List Generators"
-tags: ["usernames","passwords","credentials","swaks","listst", "generator","crunch"]
+tags: ["usernames","passwords","credentials","swaks","listst", "generator","crunch","wordlist"]
 section: "WordList"
 ---
 

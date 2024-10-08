@@ -2,6 +2,7 @@
 layout: app
 title: "General Windows"
 tags: ["Themes","Windows","Terminal"]
+section: "Windows"
 ---
 
 # Customize Windows Terminal
