@@ -12,4 +12,5 @@ posts:
     content: |
       {{ post.content | strip_html | strip_newlines | escape }}
     date: {{post.date|date: "%B %d, %Y"}}
+    section: {{post.section}}
 {% endfor %}

@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+  }
+  
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .header p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .search-box {
+    margin-top: 20px;
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .command-buttons {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .command-buttons .btn {
+    font-size: 0.9rem;
+    display: inline-block;
+    color:#1a2332!important;
+    background-color: #9fef00;
+    border-color: #9fef00;
+    color: white;
+    padding: 6px 10px;
+    margin: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .command-buttons .btn:hover {
+    background-color: #9fef00;
+  }
+  
+  .content {
+    margin-top: 40px;
+  }
+  
+  .content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .content ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .content ul li {
+    margin: 10px 0;
+  }
+  
+  .content ul li a {
+    color: #bf0707;
+    text-decoration: none;
+  }
+  
+  .content ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .wrapper{
+    max-width: calc(1060px - (60px * 2))!important;
+  }
+  .function-list{
+    font-size: 0.8rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .function-list li{
+    display: inline-block;
+    font-size: 0.8rem;
+    list-style: none;
+  }
+  .function-list li a:link{
+    color:#bf0707;
+    text-decoration: none;
+  }
+
+.function-list li a{
+    
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    margin: 0.2em 0;
+    border: 1px solid #bf0707;
+}
+.cell-hidden{
+    display: none;
+}

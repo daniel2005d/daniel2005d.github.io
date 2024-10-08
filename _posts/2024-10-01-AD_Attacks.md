@@ -2,7 +2,7 @@
 layout: app
 title: "Active Directory Attacks"
 tags: ["Attacks"]
-
+section: "Active Directory"
 ---
 
 

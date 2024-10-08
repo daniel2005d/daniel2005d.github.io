@@ -2,7 +2,7 @@
 layout: app
 title: "Active Directory - PrivEsc"
 tags: ["privesc","powerup","powerview","abuse service", "sc.exe", "Rubeus","permissions", "netloader","winrs","SafetyKats", "MS14-025","gpp-decrypt","autologon"]
-
+section: "Active Directory"
 ---
 
 # Privilege Escalation

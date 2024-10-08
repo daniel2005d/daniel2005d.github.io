@@ -2,6 +2,7 @@
 layout: app
 title: "Android Embebed App"
 tags: ["android","ionic","embebed", "reversing","decompile","cordova", "hibrid"]
+section: "Android"
 ---
 
 [Read More](https://infosecwriteups.com/recreating-cordova-mobile-apps-to-bypass-security-implementations-8845ff7bdc58)

@@ -1,7 +1,8 @@
 ---
 layout: app
-title: "Active Directory"
+title: "Active Directory No PAC"
 tags: ["NoPac","DCSync"]
+section: "Active Directory"
 ---
 
 # NoPac

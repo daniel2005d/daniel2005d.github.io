@@ -2,6 +2,7 @@
 layout: app
 title: "List Generators"
 tags: ["usernames","passwords","credentials","swaks","listst", "generator","crunch"]
+section: "WordList"
 ---
 
 # RSMangler

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css"> -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/markdown.css"> 
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/markdown.css">
   <link id="favicon" href="/assets/images/burpsuite.png" type="image/x-icon">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700">
@@ -14,89 +14,76 @@
 </head>
 
 <body>
+
+
   
-
-  <div id="sidebar">
-    
-    <ul id="menu">
-
-
-    </ul>
-  </div>
   <div id="content">
     {%if page.image%}
-    <img src="{{page.image}}" width="32px" style="float: left;margin-right: 15px;">
+     <img src="{{page.image}}" width="32px" style="float: left;margin-right: 15px;">
     {%endif%}
-      <h1 id="title" style="display: inline-block;">
-        {{page.title}}
-      </h1>
+   
+<h1>
+  <a href="{{ site.baseurl }}/index.html">
+    ../
+  </a>
+  {{page.title}}
+</h1>
     
-    
-    <div role="navigation" >
-      <ul class="wy-breadcrumb">
-        <li>
-          <a href="{{ site.baseurl }}/index.html">
-            Index
-          </a>
-        </li>
-      </ul>
-      <hr/>
-    </div>
-    {{content}}
+    {{content | markdownify}}
   </div>
 
 
 
   <script>
-            function createMenu() {
-            const headings = document.querySelectorAll('h1, h2,h3');
-            const menu = document.getElementById('menu');
-            let currentH1 = null;
-            let currentH2 = null;
-            headings.forEach(heading => {
-              if (heading.id === 'title'){
-                return;
-              }
-              const tagName = heading.tagName.toLowerCase();
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.textContent = heading.textContent;
-                a.href = `#${heading.id}`;
-                li.appendChild(a);
+    function createMenu() {
+      const headings = document.querySelectorAll('h1, h2,h3');
+      const menu = document.getElementById('menu');
+      let currentH1 = null;
+      let currentH2 = null;
+      headings.forEach(heading => {
+        if (heading.id === 'title') {
+          return;
+        }
+        const tagName = heading.tagName.toLowerCase();
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.textContent = heading.textContent;
+        a.href = `#${heading.id}`;
+        li.appendChild(a);
 
-                if (tagName === 'h1') {
-                    currentH1 = document.createElement('ul');
-                    
-                    currentH2 = null;
-                    li.appendChild(currentH1);
-                    menu.appendChild(li);
-                } else if (tagName === 'h2') {
-                    currentH2 = document.createElement('ul');
-                    currentH2.classList.add('subnav');
-                    li.appendChild(currentH2);
-                    if (currentH1) {
-                        currentH1.appendChild(li);
-                    }
-                } else if (tagName === 'h3' && currentH2) {
-                  li.classList.add('sub-level');
-                    currentH2.appendChild(li);
-                }
-            });
+        if (tagName === 'h1') {
+          currentH1 = document.createElement('ul');
+
+          currentH2 = null;
+          li.appendChild(currentH1);
+          menu.appendChild(li);
+        } else if (tagName === 'h2') {
+          currentH2 = document.createElement('ul');
+          currentH2.classList.add('subnav');
+          li.appendChild(currentH2);
+          if (currentH1) {
+            currentH1.appendChild(li);
+          }
+        } else if (tagName === 'h3' && currentH2) {
+          li.classList.add('sub-level');
+          currentH2.appendChild(li);
+        }
+      });
+    }
+
+    // Add IDs to headings for navigation
+    function addIdsToHeadings() {
+      const headings = document.querySelectorAll('h1, h2,h3');
+      headings.forEach((heading, index) => {
+        if (heading.id !== 'title') {
+          heading.id = `heading-${index}`;
         }
 
-         // Add IDs to headings for navigation
-         function addIdsToHeadings() {
-            const headings = document.querySelectorAll('h1, h2,h3');
-            headings.forEach((heading, index) => {
-              if (heading.id !== 'title'){
-                heading.id = `heading-${index}`;
-              }
+      });
+    }
 
-            });
-        }
-
-//        addIdsToHeadings();
-  //      createMenu();
+    //        addIdsToHeadings();
+    //      createMenu();
 
 
   </script>

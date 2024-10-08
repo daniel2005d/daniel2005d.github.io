@@ -2,7 +2,7 @@
 layout: app
 title: "Active Directory"
 tags: ["PASSWD_NOTREQD","enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU", "finduserdomain","asreproasting"]
-
+section: "Active Directory"
 ---
 
 # Create Lab
