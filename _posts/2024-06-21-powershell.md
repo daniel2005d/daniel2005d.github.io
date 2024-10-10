@@ -14,6 +14,14 @@ Invoke-Command -Scriptblock {Get-Process} -ComputerName (Get-Content <list_serve
 Invoke-Command -FilePath c:\windows\temp\script.ps1 -ComputerName (Get-Content <list_servers>)
 ```
 
+```powershell
+$username=''
+$password=''
+$secureString = ConvertTo-SecureString $password -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential($username,$secureString)
+Invoke-Command -ScriptBlock {whoami} -ComputerName [ComputerName] -Credential $cred
+```
+
 ## Run Command to evade logging
 
 ```powershell

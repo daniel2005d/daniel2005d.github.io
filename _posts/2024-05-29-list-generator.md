@@ -5,6 +5,10 @@ tags: ["usernames","passwords","credentials","swaks","listst", "generator","crun
 section: "WordList"
 ---
 
+# statistically-likely-usernames
+
+[https://github.com/insidetrust/statistically-likely-usernames](https://github.com/insidetrust/statistically-likely-usernames)
+
 # RSMangler
 
 [https://github.com/digininja/RSMangler](https://github.com/digininja/RSMangler)
@@ -24,7 +28,6 @@ python namemash.py
 
 **fileformat**: names lastnames, separate by spaces
 ```
-
     
 
 # crunch
