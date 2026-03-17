@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: default
 title: "Configuración de Luckfox Pico como servidor DHCP"
 permalink: /devices/luckyfox
+nav_enabled: false
+parent: Dispositivos
 ---
 
 ## Introducción
