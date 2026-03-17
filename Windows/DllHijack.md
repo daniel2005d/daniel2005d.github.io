@@ -24,6 +24,8 @@ Es bien sabido que muchas herramientas en Windows, tanto propietarias como de te
 5. Directorio actual.
 6. El listado de directorios en la variable de entorno PATH.
 
+[https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-security](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-security)
+
 Partiendo de este comportamiento y haciendo uso de `procmon.exe`, se puede identificar si una aplicación es susceptible a DLL Hijacking.
 
 ![](/images/dllhijack_promonfilter.png)
