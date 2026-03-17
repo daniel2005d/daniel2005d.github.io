@@ -4,8 +4,6 @@ title: "Configuración de Luckfox Pico como servidor DHCP"
 permalink: /devices/luckyfox
 ---
 
-# Configuración de Luckfox Pico como servidor DHCP
-
 ## Introducción
 
 En esta publicación se describe el proceso de configuración de una placa **Luckfox Pico** para funcionar como servidor DHCP. Estos dispositivos permiten ejecutar **Linux en hardware extremadamente compacto**, lo que los hace ideales para laboratorios, automatización o experimentación con sistemas embebidos.
