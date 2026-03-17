@@ -1,6 +1,7 @@
 ---
 title: Inicio
-nav_order: 1
+nav_enabled: false
+nav_order: 0
 ---
 
 # Bienvenido

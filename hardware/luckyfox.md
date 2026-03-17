@@ -48,7 +48,7 @@ inicio → ejecutar → ncpa.cpl
 
 4. En la pestaña **Compartir**, habilitar la opción para compartir la conexión y seleccionar la interfaz de red correspondiente al dispositivo **Luckfox**.
 
-![Propiedades de Conexión](images/luckfox_shareinternet.png)
+![Propiedades de Conexión](/images/luckfox_shareinternet.png)
 
 Es posible que Windows muestre el siguiente mensaje:
 
@@ -171,7 +171,7 @@ La instrucción `netmask` no está definida originalmente, pero se recomienda ag
 
 Además, el servicio `dnsmasq` se reinicia en este punto porque **la interfaz usb0 ya existe**. Si el servicio se inicia antes, puede generar errores al no encontrar la interfaz.
 
-![S50usbdevice](images/luckfox_customserviceconfig.png)
+![S50usbdevice](/images/luckfox_customserviceconfig.png)
 
 ---
 
@@ -184,6 +184,8 @@ Después de reiniciar el dispositivo, la configuración quedará de la siguiente
 - Los clientes recibirán gateway y DNS automáticamente
 
 ---
+
+![Conexión a LuckFox](/images/luckfox_ssh.png)
 
 # Conclusiones
 
