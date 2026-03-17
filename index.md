@@ -1,6 +1,6 @@
 ---
 title: Inicio
-nav_enabled: false
+nav_enabled: true
 nav_order: 0
 ---
 
