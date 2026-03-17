@@ -1,0 +1,11 @@
+layout: page
+title: "Configuración de LuckFox"
+permalink: /devices/luckyfox
+
+Hoy vengo a hablar de Luckfox, un dispositivo que nos permite tener un linux en una placa muy pequeña. Yo compre [Luckfox Pico RV1103 Micro Linux](https://www.amazon.com/dp/B0DPM4452B?ref=ppx_yo2ov_dt_b_fed_asin_title) , la cual me ha servidor para varios laboratorios.
+
+Pero por ahora explicare un poco como realizar la instalación y sobre todo la configuración del DHCP.
+
+Siguiendo las instrucciones directamente de la wiki que provee (https://wiki.luckfox.com/Luckfox-Pico-Plus-Mini/Flash-image), debemos descargar el driver para Windows, el cual esta en el sitio web. Posteriormente debemos bajar la imagen que mas nos interesa o nos guste que se encuentra en el [Google Drive](https://drive.google.com/drive/folders/14kFWY93MZ4Zga4ke2PVQgUs1y9xcMG0S?usp=sharing), para mi caso use Ubuntu 22.04.
+
+Se procede SocToolkit la bajar la herramienta para flashear la SD que tendra la board (Algo igual como funciona Raspberry), tan pronto como carga, se solicita que 
